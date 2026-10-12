@@ -10,7 +10,7 @@
 void cargar_datos(int*ptr) {
     int cantidad=0;
     char categoria;
-    FILE* registro=fopen("equipos.txt","w");
+    FILE* registro=fopen("equipos.txt","a");
     if (registro==NULL) {//creo que lo hice mal, porque creo innecesario pero bueno mejor precavido jajaja
         printf("error al abrir el archivo");
     }else {
