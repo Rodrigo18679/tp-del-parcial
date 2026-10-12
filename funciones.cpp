@@ -10,8 +10,8 @@
 void cargar_datos(int*ptr) {
     int cantidad=0;
     char categoria;
-    FILE* registro=fopen("rodrigo.txt","a");
-    if (registro==NULL) {
+    FILE* registro=fopen("equipos.txt","w");
+    if (registro==NULL) {//creo que lo hice mal, porque creo innecesario pero bueno mejor precavido jajaja
         printf("error al abrir el archivo");
     }else {
         printf("cuantos equipos ingresara ahora: ");
@@ -45,7 +45,7 @@ void cargar_datos(int*ptr) {
     }return;
 }
 void listar_datos() {
-    FILE *registro=fopen("rodrigo.txt","r");
+    FILE *registro=fopen("equipos.txt","r");
     if (registro==NULL) {
         printf("error al abrir el archivo");
     }else {

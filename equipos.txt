@@ -1,0 +1,5 @@
+miami			40	0
+eje			60	1
+england			30	0
+liverpool			12	1
+manchester			30	0
