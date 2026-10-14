@@ -1,0 +1,7 @@
+Nombre_del_Equipo     Puntos   Estado_Booleano
+Boca                    48          0
+River                   52          0
+Racing                  41          0
+Independiente           22          1
+San_Lorenzo             35          0
+Huracan                 18          1
