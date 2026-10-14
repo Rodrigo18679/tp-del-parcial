@@ -10,12 +10,12 @@ typedef struct {
 } equipos;
 
 // Prototipos de funciones - Parte A (Rodrigo)
-void cargar_datos(int *ptr);
-void listar_datos(void);
+void cargar_datos(const char *nombre_archivo, int *ptr);
+void listar_datos(const char *nombre_archivo);
 
 // Prototipos de funciones - Parte B (Ivan)
-void listar_por_condicion(void);
-void dividir_archivo_por_booleano(void);
+void listar_por_condicion(const char *nombre_archivo);
+void dividir_archivo_por_booleano(const char *origen, const char *destino_desc, const char *destino_perm);
 
 // Interfaz de menu
 void mostrar_menu(void);
@@ -33,16 +33,16 @@ int main(void) {
 
         switch (opcion) {
             case 1:
-                cargar_datos(&totalCargados);
+                cargar_datos("equipos.txt", &totalCargados);
                 break;
             case 2:
-                listar_datos();
+                listar_datos("equipos.txt");
                 break;
             case 3:
-                listar_por_condicion();
+                listar_por_condicion("equipos.txt");
                 break;
             case 4:
-                dividir_archivo_por_booleano();
+                dividir_archivo_por_booleano("equipos.txt", "descendidos.txt", "permanecen.txt");
                 break;
             case 5:
                 printf("Saliendo del sistema...\n");
@@ -67,7 +67,7 @@ void mostrar_menu(void) {
     printf("Ingrese una opcion: ");
 }
 
-void cargar_datos(int *ptr) {
+void cargar_datos(const char *nombre_archivo, int *ptr) {
     int cantidad;
     char categoria;
     int i;
@@ -75,10 +75,10 @@ void cargar_datos(int *ptr) {
     equipos *lista;
 
     cantidad = 0;
-    registro = fopen("equipos.txt", "a");
+    registro = fopen(nombre_archivo, "a");
 
     if (registro == NULL) {
-        printf("Error: No se pudo abrir el archivo equipos.txt\n");
+        printf("Error: No se pudo abrir el archivo %s\n", nombre_archivo);
     } else {
         printf("¿Cuantos equipos ingresara ahora?: ");
         while (cantidad <= 0) {
@@ -90,7 +90,7 @@ void cargar_datos(int *ptr) {
 
         *ptr = cantidad;
 
-        // Asignacion dinamica en el Heap
+
         lista = (equipos *)malloc(cantidad * sizeof(equipos));
 
         if (lista != NULL) {
@@ -124,16 +124,16 @@ void cargar_datos(int *ptr) {
     }
 }
 
-void listar_datos(void) {
+void listar_datos(const char *nombre_archivo) {
     FILE *registro;
     char nombre[50];
     int puntos;
     int categoria;
 
-    registro = fopen("equipos.txt", "r");
+    registro = fopen(nombre_archivo, "r");
 
     if (registro == NULL) {
-        printf("Error: No se pudo abrir el archivo equipos.txt\n");
+        printf("Error: No se pudo abrir el archivo %s\n", nombre_archivo);
     } else {
         printf(" LISTADO GENERAL DE EQUIPOS\n");
         printf("%-20s | %-8s | %-12s\n", "NOMBRE", "PUNTOS", "DESCENDIO");
@@ -148,7 +148,7 @@ void listar_datos(void) {
 }
 
 
-void listar_por_condicion(void) {
+void listar_por_condicion(const char *nombre_archivo) {
     FILE *registro;
     char nombre[50];
     int puntos;
@@ -156,10 +156,10 @@ void listar_por_condicion(void) {
     int contadorCoincidencias;
 
     contadorCoincidencias = 0;
-    registro = fopen("equipos.txt", "r");
+    registro = fopen(nombre_archivo, "r");
 
     if (registro == NULL) {
-        printf("Error: No se pudo abrir el archivo equipos.txt\n");
+        printf("Error: No se pudo abrir el archivo %s\n", nombre_archivo);
     } else {
         printf(" EQUIPOS EN ZONA DE DESCENSO (FILTRO: DESCENDIO == 1) ===\n");
         printf("%-20s | %-8s\n", "NOMBRE", "PUNTOS");
@@ -180,22 +180,22 @@ void listar_por_condicion(void) {
     }
 }
 
-void dividir_archivo_por_booleano(void) {
-    FILE *origen;
+void dividir_archivo_por_booleano(const char *origen, const char *destino_desc, const char *destino_perm) {
+    FILE *f_origen;
     FILE *archDescendidos;
     FILE *archPermanecen;
     char nombre[50];
     int puntos;
     int descendio;
 
-    origen = fopen("equipos.txt", "r");
-    archDescendidos = fopen("descendidos.txt", "w");
-    archPermanecen = fopen("permanecen.txt", "w");
+    f_origen = fopen(origen, "r");
+    archDescendidos = fopen(destino_desc, "w");
+    archPermanecen = fopen(destino_perm, "w");
 
-    if (origen == NULL || archDescendidos == NULL || archPermanecen == NULL) {
+    if (f_origen == NULL || archDescendidos == NULL || archPermanecen == NULL) {
         printf("Error al abrir o generar los archivos para la division.\n");
     } else {
-        while (fscanf(origen, "%s %d %d", nombre, &puntos, &descendio) == 3) {
+        while (fscanf(f_origen, "%s %d %d", nombre, &puntos, &descendio) == 3) {
             if (descendio == 1) {
                 fprintf(archDescendidos, "%s %d %d\n", nombre, puntos, descendio);
             } else {
@@ -203,14 +203,14 @@ void dividir_archivo_por_booleano(void) {
             }
         }
 
-        fclose(origen);
+        fclose(f_origen);
         fclose(archDescendidos);
         fclose(archPermanecen);
 
 
         printf("Proceso de division completado correctamente:\n");
-        printf(" Se creo 'descendidos.txt' con equipos descendidos.\n");
-        printf(" Se creo 'permanecen.txt' con equipos que mantienen categoria.\n");
+        printf(" Se creo '%s' con equipos descendidos.\n", destino_desc);
+        printf(" Se creo '%s' con equipos que mantienen categoria.\n", destino_perm);
 
     }
 }

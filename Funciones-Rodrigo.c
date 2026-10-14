@@ -3,7 +3,7 @@
 //Rodrigo
 #include "Funciones-Rodrigo.h" //Se incluyen todas la funciones del Archivo funciones.h
 
-void cargar_datos(int*ptr) {
+void cargar_datos(const char *nombre_archivo, int*ptr) {
 
     int cantidad;
     char categoria;
@@ -12,7 +12,7 @@ void cargar_datos(int*ptr) {
     equipos *lista;
 
     cantidad=0;
-    registro = fopen("equipos.txt","a"); //Modo append: al final
+    registro = fopen(nombre_archivo,"a"); //Modo append: al final
 
 
     if (registro==NULL) {
@@ -60,14 +60,14 @@ void cargar_datos(int*ptr) {
 
 }
 
-void listar_datos() {
+void listar_datos(const char *nombre_archivo) {
 
     FILE *registro;
     char nombre[50];
     int puntos;
     int categoria;
 
-   registro = fopen("equipos.txt","r");
+    registro = fopen(nombre_archivo,"r");
 
     if (registro==NULL) {
         printf("Error: No se pudo abrir el archivo equipos.txt\n");

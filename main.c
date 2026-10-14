@@ -13,16 +13,16 @@ int main(void) {
         scanf("%d", &opcion);
         switch (opcion) {
             case 1:
-                cargar_datos(&totalCargados);
+                cargar_datos("equipos.txt", &totalCargados);
                 break;
             case 2:
-                listar_datos();
+                listar_datos("equipos.txt");
                 break;
             case 3:
-                listar_por_condicion();
+                listar_por_condicion("equipos.txt");
                 break;
             case 4:
-                dividir_archivo_por_booleano();
+                dividir_archivo_por_booleano("equipos.txt", "descendidos.txt", "permanecen.txt");
                 break;
             case 5:
                 printf("Saliendo del sistema...\n");

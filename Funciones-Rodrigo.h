@@ -18,12 +18,12 @@ typedef struct {
 }equipos;
 
 //Prototipos de funciones de Rodrigo
-void cargar_datos(int *ptr);
-void listar_datos(void);
+void cargar_datos(const char *nombre_archivo, int *ptr);
+void listar_datos(const char *nombre_archivo);
 
 //Prototipos agregados para Parte de Ivan
-void listar_por_condicion(void);
-void dividir_archivo_por_booleano(void);
+void listar_por_condicion(const char *nombre_archivo);
+void dividir_archivo_por_booleano(const char *origen, const char *destino_desc, const char *destino_perm);
 void mostrar_menu(void);
 
 #endif //FUNCIONES_H

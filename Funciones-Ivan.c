@@ -3,7 +3,7 @@
 
 #include "Funciones-Rodrigo.h"
 
-void listar_por_condicion(void) {
+void listar_por_condicion(const char *nombre_archivo) {
     FILE *registro;
     char nombre[50];
     int puntos;
@@ -11,7 +11,7 @@ void listar_por_condicion(void) {
     int contadorCoincidencias;
 
     contadorCoincidencias = 0;
-    registro = fopen("equipos.txt", "r");
+    registro = fopen(nombre_archivo, "r");
 
     if (registro == NULL) {
         printf("Error: No se pudo abrir el archivo equipos.txt\n");
@@ -35,16 +35,16 @@ void listar_por_condicion(void) {
 }
 
 void dividir_archivo_por_booleano(void) {
-    FILE *origen;
+    FILE *f_origen;
     FILE *archDescendidos;
     FILE *archPermanecen;
     char nombre[50];
     int puntos;
     int descendio;
 
-    origen = fopen("equipos.txt", "r");
-    archDescendidos = fopen("descendidos.txt", "w");
-    archPermanecen = fopen("permanecen.txt", "w");
+    f_origen = fopen(origen, "r");
+    archDescendidos = fopen(destino_desc, "w");
+    archPermanecen = fopen(destino_perm, "w");
 
     if (origen == NULL || archDescendidos == NULL || archPermanecen == NULL) {
         printf("Error al abrir o generar los archivos para la division.\n");
@@ -63,8 +63,8 @@ void dividir_archivo_por_booleano(void) {
 
 
         printf(" Proceso de division completado correctamente:\n");
-        printf(" Se creo 'descendidos.txt' con equipos descendidos.\n");
-        printf(" Se creo 'permanecen.txt' con equipos que mantienen categoria.\n");
+        printf(" Se creo '%s' con equipos descendidos.\n", destino_desc);
+        printf(" Se creo '%s' con equipos que mantienen categoria.\n", destino_perm);
     }
 }
 
