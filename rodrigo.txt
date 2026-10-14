@@ -1,7 +1,0 @@
-rodrig			32	1
-malacia			23	0
-maria			56	0
-mortadela			45	1
-aguacate			23	0
-mayonesa			45	1
-portland			34	0

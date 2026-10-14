@@ -5,7 +5,7 @@
 #ifndef FUNCIONES_H
 #define FUNCIONES_H
 
-#include <strio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -22,8 +22,8 @@ void cargar_datos(int *ptr);
 void listar_datos(void);
 
 //Prototipos agregados para Parte de Ivan
-void listar_por_condiciones(void);
-void dividir_archivos_por_booleano(void);
+void listar_por_condicion(void);
+void dividir_archivo_por_booleano(void);
 void mostrar_menu(void);
 
 #endif //FUNCIONES_H

@@ -1,4 +1,4 @@
-#include "funciones.h"//incluyo funciones de archivo de funciones.h
+#include "Funciones-Rodrigo.h"//incluyo funciones de archivo de funciones.h
 
 int main(void) {
 
@@ -30,7 +30,7 @@ int main(void) {
             default:
                 printf("Opcion invalida. Reintente.\n");
         }
-    }while (opcion != 0);
+    }while (opcion != 5);
 
     return 0;
 }

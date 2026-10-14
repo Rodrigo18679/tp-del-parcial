@@ -1,10 +1,9 @@
-// Funciones_ivan.c
+// Funciones_Ivan.c
 //Muestra unicamente los equipos que cumplen la condicion (descendio == 1)
 
-#include "funcionesRodrigo.h"
+#include "Funciones-Rodrigo.h"
 
 void listar_por_condicion(void) {
-
     FILE *registro;
     char nombre[50];
     int puntos;
@@ -16,7 +15,7 @@ void listar_por_condicion(void) {
 
     if (registro == NULL) {
         printf("Error: No se pudo abrir el archivo equipos.txt\n");
-    }else {
+    } else {
         printf("EQUIPOS EN ZONA DE DESCENSO (FILTRO: DESCENDIO == 1)\n");
         printf("%-20s | %-8s\n", "NOMBRE", "PUNTOS");
 
@@ -36,7 +35,6 @@ void listar_por_condicion(void) {
 }
 
 void dividir_archivo_por_booleano(void) {
-
     FILE *origen;
     FILE *archDescendidos;
     FILE *archPermanecen;
@@ -69,8 +67,8 @@ void dividir_archivo_por_booleano(void) {
         printf(" Se creo 'permanecen.txt' con equipos que mantienen categoria.\n");
     }
 }
-void mostrar_menu(void) {
 
+void mostrar_menu(void) {
     printf("   SISTEMA DE GESTION DE EQUIPOS DE FUTBOL\n");
 
     printf("1. Agregar equipos al archivo\n");

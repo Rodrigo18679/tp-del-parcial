@@ -1,7 +1,7 @@
 //
-// funciones.C
+//Funciones.C
 //Rodrigo
-#include "funcionesRodrigo.h" //Se incluyen todas la funciones del Archivo funciones.h
+#include "Funciones-Rodrigo.h" //Se incluyen todas la funciones del Archivo funciones.h
 
 void cargar_datos(int*ptr) {
 
