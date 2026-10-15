@@ -1,7 +1,7 @@
 //
 //Funciones.C
 //Rodrigo
-#include "Funciones-Rodrigo.h" //Se incluyen todas la funciones del Archivo funciones.h
+#include "Funciones-Rodrigo+Ivan.c" //Se incluyen todas la funciones del Archivo funciones.h
 
 void cargar_datos(const char *nombre_archivo, int*ptr) {
 
@@ -16,7 +16,7 @@ void cargar_datos(const char *nombre_archivo, int*ptr) {
 
 
     if (registro==NULL) {
-        printf("Error: No se pudo abrir el archivo equipos.txt");
+        printf("Error: No se pudo abrir el archivo %s\n", nombre_archivo);
     }else {
         printf("¿Cuantos equipos ingresara ahora?: ");
         while (cantidad <= 0){
@@ -32,7 +32,7 @@ void cargar_datos(const char *nombre_archivo, int*ptr) {
 
         if (lista !=NULL) {
             for (i = 0; i < cantidad; i++) {
-                 printf("Cargar Equipo %d", i + 1);
+                 printf("Cargar Equipo %d\n", i + 1);
 
                 printf("Ingrese nombre del equipo: ");
                 scanf("%s", lista[i].nombre);
@@ -70,7 +70,7 @@ void listar_datos(const char *nombre_archivo) {
     registro = fopen(nombre_archivo,"r");
 
     if (registro==NULL) {
-        printf("Error: No se pudo abrir el archivo equipos.txt\n");
+        printf("Error: No se pudo abrir el archivo %s\n", nombre_archivo);
     }else {
         printf("LISTA GENERAL DE EQUIPOS\n");
         printf("%-20s | %-8s | %-12s\n", "NOMBRE", "PUNTOS", "DESCENDIO");

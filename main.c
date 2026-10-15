@@ -1,4 +1,5 @@
-#include "Funciones-Rodrigo.h"//incluyo funciones de archivo de funciones.h
+//main
+#include "Funciones-Rodrigo+Ivan.c"//incluyo funciones de archivo de funciones.h
 
 int main(void) {
 

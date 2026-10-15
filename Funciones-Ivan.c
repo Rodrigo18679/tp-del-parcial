@@ -1,7 +1,7 @@
 // Funciones_Ivan.c
 //Muestra unicamente los equipos que cumplen la condicion (descendio == 1)
 
-#include "Funciones-Rodrigo.h"
+#include "Funciones-Rodrigo+Ivan.c"
 
 void listar_por_condicion(const char *nombre_archivo) {
     FILE *registro;
@@ -14,7 +14,7 @@ void listar_por_condicion(const char *nombre_archivo) {
     registro = fopen(nombre_archivo, "r");
 
     if (registro == NULL) {
-        printf("Error: No se pudo abrir el archivo equipos.txt\n");
+        printf("Error: No se pudo abrir el archivo %s\n", nombre_archivo);
     } else {
         printf("EQUIPOS EN ZONA DE DESCENSO (FILTRO: DESCENDIO == 1)\n");
         printf("%-20s | %-8s\n", "NOMBRE", "PUNTOS");
@@ -34,7 +34,7 @@ void listar_por_condicion(const char *nombre_archivo) {
     }
 }
 
-void dividir_archivo_por_booleano(void) {
+void dividir_archivo_por_booleano(const char *origen, const char *destino_desc, const char *destino_perm) {
     FILE *f_origen;
     FILE *archDescendidos;
     FILE *archPermanecen;
@@ -46,10 +46,10 @@ void dividir_archivo_por_booleano(void) {
     archDescendidos = fopen(destino_desc, "w");
     archPermanecen = fopen(destino_perm, "w");
 
-    if (origen == NULL || archDescendidos == NULL || archPermanecen == NULL) {
+    if (f_origen == NULL || archDescendidos == NULL || archPermanecen == NULL) {
         printf("Error al abrir o generar los archivos para la division.\n");
     } else {
-        while (fscanf(origen, "%s %d %d", nombre, &puntos, &descendio) == 3) {
+        while (fscanf(f_origen, "%s %d %d", nombre, &puntos, &descendio) == 3) {
             if (descendio == 1) {
                 fprintf(archDescendidos, "%s %d %d\n", nombre, puntos, descendio);
             } else {
@@ -57,7 +57,7 @@ void dividir_archivo_por_booleano(void) {
             }
         }
 
-        fclose(origen);
+        fclose(f_origen);
         fclose(archDescendidos);
         fclose(archPermanecen);
 
